@@ -768,8 +768,10 @@ static irqreturn_t vmac_intr(int irq, void *dev_instance)
 	if (unlikely(ap->shutdown))
 		dev_err(&ap->pdev->dev, "ISR during close\n");
 
+	/*
 	if (unlikely(!(status & (TXINT_MASK|RXINT_MASK|MDIO_MASK|ERR_MASK))))
 		dev_err(&ap->pdev->dev, "Spurious IRQ\n");
+	*/
 
 	if ((status & RXINT_MASK) && (vmac_readl(ap, ENABLE) & RXINT_MASK) &&
 	    (ap->dma_rx_head != vmac_readl(ap, MAC_RXRING_HEAD))) {
